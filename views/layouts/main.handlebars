@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Eat A Burger</title>
+</head>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-2 my-auto">
+            <img src="../../public/assets/img/burger.png" alt="burger image" width="200px">
+        </div>
+        <div class="col-md-10 my-auto text-center">
+            <h1 class="display-4">Your Way Burgers</h1>
+            <p class="lead">A digital restaurant to to create and devourer any burger any way without the worries of
+                heath and wealth!!</p>
+        </div>
+    </div>
+    <form  class="mt-5" action="">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="add-btn">Button</button>
+            </div>
+            <input id="name-input" type="text" class="form-control" placeholder=""
+                aria-label="Input filed for new burger" aria-describedby="add-btn">
+        </div>
+    </form>
+    <hr>
+    {{{body}}}
+
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+        <script>
+            $("#add-btn").on("click", function () {
+                var name = $("#name-input").val().trim();
+                if (name != "") {
+                    dataValue = { name: name };
+                    $.ajax({
+                        url: "/api/burgers",
+                        type: "POST",
+                        data: dataValue
+                    }).then(function (resp) {
+                        location.reload();
+                    });
+                };
+            });
+
+            $(".eat").on("click", function(){
+                var id = $(this).data("id")
+                $.ajax({
+                    url: "/api/burgers/" + id,
+                    type: "PUT",
+                }).then(function(resp){
+                    location.reload();
+                });
+            });
+        </script>
+
+    </body>
+
+</html>

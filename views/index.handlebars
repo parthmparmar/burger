@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-6 text-center">
+        <h3>Ready To Eat</h3>
+        <hr>
+        <ui class="list-group">
+        {{#each burgers}}
+            {{#unless devoured}}
+                <li class="list-group-item">
+                    <p>{{burger_name}}</p>
+                    <button data-id= {{id}} class="eat btn btn-outline-primary">Devourer</button>
+                </li>
+            {{/unless}}
+        {{/each}}
+        </ui>
+    </div>
+    <div class="col-md-6 text-center">
+        <h3>Past Burger Creations</h3>
+        <hr>
+        <ui class="list-group">
+        {{#each burgers}}
+            {{#if devoured}}
+                <li class="list-group-item">
+                    <p>{{burger_name}}</p>
+                </li>
+            {{/if}}
+        {{/each}}
+        </ui>
+    </div>
+</div>
+</div>
